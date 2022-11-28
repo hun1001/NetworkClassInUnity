@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     string myID;
 
     public GameObject prefabUser;
-    public GameObject user;
+    // public GameObject user;
 
     Dictionary<string, UserControl> remoteUsers;
     Queue<string> commandQueue;
@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
     {
         remoteUsers = new();
         commandQueue = new();
+    }
+
+    private void Update()
+    {
+        ProcessQueue();
     }
 
     public void SendCommand(string cmd)
@@ -120,6 +125,7 @@ public class GameManager : MonoBehaviour
 
                     if (myID.CompareTo(id) != 0)
                     {
+                        Debug.Log(command + "이거 이거");
                         switch (command)
                         {
                             case "Enter":
@@ -163,6 +169,7 @@ public class GameManager : MonoBehaviour
     {
         if (!remoteUsers.ContainsKey(id))
         {
+            Debug.Log("AddUser: " + id);
             remoteUsers.Add(id, Instantiate(prefabUser).GetComponent<UserControl>());
         }
     }

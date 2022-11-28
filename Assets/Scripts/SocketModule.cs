@@ -123,6 +123,7 @@ public class SocketModule : MonoBehaviour
                 }
                 GameManager.Instance.QueueCommand(returnData);
                 Debug.Log(returnData);
+                returnData = "";
             }
         }
         catch (System.Exception e)
